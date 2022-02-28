@@ -53,9 +53,9 @@ class Form extends React.Component {
           </label>
 
           <select name="select" data-testid="rare-input">
-            <option value="valor1">normal</option>
-            <option value="valor2">raro</option>
-            <option value="valor3">muito raro</option>
+            <option value="normal">normal</option>
+            <option value="raro">raro</option>
+            <option value="muito raro">muito raro</option>
           </select>
 
           <input
