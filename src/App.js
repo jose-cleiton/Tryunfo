@@ -6,9 +6,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    
-  
-  
     this.updateCardList = this.updateCardList.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
 
@@ -30,7 +27,7 @@ class App extends React.Component {
     };
   }
 
-  onInputChange = ({ target })=> {
+  onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
@@ -161,7 +158,7 @@ class App extends React.Component {
       nameFilter, rareFilter, trunfoFilter } = this.state;
     const { onInputChange, onSaveButtonClick, updateCardList } = this;
     return (
-      <div>
+      <div className="container">
         <h1>Tryunfo</h1>
         <Form
           cardName={ cardName }
