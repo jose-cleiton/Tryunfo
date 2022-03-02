@@ -5,10 +5,6 @@ import Card from './components/Card';
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    this.updateCardList = this.updateCardList.bind(this);
-    this.deleteCard = this.deleteCard.bind(this);
-
     this.state = {
       cardName: '',
       cardDescription: '',
@@ -25,16 +21,18 @@ class App extends React.Component {
       rareFilter: 'todas',
       trunfoFilter: false,
     };
-  }
+  }// fim do constructor
 
   onInputChange = ({ target }) => {
     const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === 'checkbox'
+      ? target.checked
+      : target.value;
 
     this.setState({
       [name]: value,
     }, () => this.validateSaveButton());
-  }
+  } // fim onInputChange
 
   onSaveButtonClick = () => {
     this.setState((state) => (
@@ -67,14 +65,22 @@ class App extends React.Component {
     this.setState((state) => {
       const limit = 90;
       const sumLimit = 210;
-      return {
-        isSaveButtonDisabled:
-        !(state.cardName !== '' && state.cardDescription !== '' && state.cardImage !== ''
-        && state.cardAttr1 <= limit && state.cardAttr2 <= limit
+      const { cardName,
+        cardDescription,
+        cardImage,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3 } = this.state;
+      const valor = !(cardName !== ''
+            && cardDescription !== ''
+            && cardImage !== ''
+        && cardAttr1 <= limit && cardAttr2 <= limit
         && state.cardAttr3 <= limit
-        && ((Number(state.cardAttr1) + Number(state.cardAttr2) + Number(state.cardAttr3))
+        && ((Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3))
           <= sumLimit)
-        && state.cardAttr1 >= 0 && state.cardAttr2 >= 0 && state.cardAttr3 >= 0),
+        && cardAttr1 >= 0 && cardAttr2 >= 0 && cardAttr3 >= 0);
+      return {
+        isSaveButtonDisabled: valor,
       };
     });
   }
@@ -149,7 +155,7 @@ class App extends React.Component {
         </button>
       </div>
     ));
-  }
+  } // fim  updateCardList
 
   render() {
     const {
@@ -157,7 +163,9 @@ class App extends React.Component {
       cardImage, cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled,
       nameFilter, rareFilter, trunfoFilter } = this.state;
     const { onInputChange, onSaveButtonClick, updateCardList } = this;
+
     return (
+
       <div className="container">
         <h1>Tryunfo</h1>
         <Form
