@@ -62,7 +62,7 @@ class App extends React.Component {
   }
 
   validateSaveButton = () => {
-    this.setState((state) => {
+    this.setState(() => {
       const limit = 90;
       const sumLimit = 210;
       const { cardName,
@@ -75,7 +75,7 @@ class App extends React.Component {
             && cardDescription !== ''
             && cardImage !== ''
         && cardAttr1 <= limit && cardAttr2 <= limit
-        && state.cardAttr3 <= limit
+        && cardAttr3 <= limit
         && ((Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3))
           <= sumLimit)
         && cardAttr1 >= 0 && cardAttr2 >= 0 && cardAttr3 >= 0);
