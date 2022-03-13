@@ -62,27 +62,31 @@ class App extends React.Component {
   }
 
   validateSaveButton = () => {
-    this.setState(() => {
-      const limit = 90;
-      const sumLimit = 210;
-      const { cardName,
-        cardDescription,
-        cardImage,
-        cardAttr1,
-        cardAttr2,
-        cardAttr3 } = this.state;
-      const valor = !(cardName !== ''
-            && cardDescription !== ''
-            && cardImage !== ''
-        && cardAttr1 <= limit && cardAttr2 <= limit
-        && cardAttr3 <= limit
-        && ((Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3))
-          <= sumLimit)
-        && cardAttr1 >= 0 && cardAttr2 >= 0 && cardAttr3 >= 0);
-      return {
-        isSaveButtonDisabled: valor,
-      };
-    });
+    const { cardName,
+      cardDescription,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3 } = this.state;
+    const limit = 90;
+    const sumLimit = 210;
+    const totcardAttrs = ((Number(cardAttr1)
+        + Number(cardAttr2)
+        + Number(cardAttr3))
+        <= sumLimit);
+    const valor = !(cardName !== ''
+      && cardDescription !== ''
+      && cardImage !== ''
+      && cardAttr1 <= limit
+      && cardAttr2 <= limit
+      && cardAttr3 <= limit
+      && totcardAttrs
+      && cardAttr1 >= 0
+      && cardAttr2 >= 0
+      && cardAttr3 >= 0);
+    this.setState(() => ({
+      isSaveButtonDisabled: valor,
+    }));
   }
 
   deleteCard = (key) => {
